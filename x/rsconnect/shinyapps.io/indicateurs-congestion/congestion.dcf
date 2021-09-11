@@ -1,0 +1,13 @@
+name: congestion
+title: congestion
+username:
+account: indicateurs-congestion
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4451915
+bundleId: 4967646
+url: https://indicateurs-congestion.shinyapps.io/congestion/
+when: 1629984741.66857
+lastSyncTime: 1629984741.66857
+asMultiple: FALSE
+asStatic: FALSE

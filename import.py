@@ -18,7 +18,7 @@ import locale
 locale.setlocale(locale.LC_TIME,'')
 import math
 
-## creation fonction pour permettre de diviser par 0
+## creation d'une fonction pour permettre de diviser par 0
 
 def divi(x, y):
     return 0 if y == 0 else x / y
@@ -136,7 +136,7 @@ for x in files:
         n+=32
         list_of_data.append(data_)
      
-    ## convertion des temps de parcours en secondes (en passant par la séparation en parties entières et décimales)    
+    ## convertion des temps de parcours en secondes (en passant par la séparation en parties entières et décimales) puis en km/h
     
     dataList = []
            
@@ -150,6 +150,7 @@ for x in files:
            mylist = [math.modf(y) for y in mylist]
            mylist= [int((x[1]*60)+(x[0]*100)) for x in mylist]
            mylist= [(divi(int(long[0]),x))*3.6 for x in mylist]
+           mylist = [x if x<90 else 90 for x in mylist]
 
            
            dataList.append(mylist)
@@ -170,7 +171,7 @@ for x in files:
         dictionary.append(dict(listofTuples))
     
          
-    ## remplacement des temps de parcours dans le dictionnaire par les nouveaux en secondes
+    ## remplacement des vitesses dans le dictionnaire par les vitesses correctes (heure par heure)
     
     a=0
     b=0
@@ -311,6 +312,8 @@ for x in files:
            mylist = [math.modf(y) for y in mylist]
            mylist= [int((x[1]*60)+(x[0]*100)) for x in mylist]
            mylist= [(divi(int(long[0]),x))*3.6 for x in mylist]
+           mylist = [x if x<90 else 90 for x in mylist]
+
 
            
            dataList.append(mylist)
@@ -327,11 +330,11 @@ for x in files:
     dictionary = []
         
     for a in range(len(unix_list)):
-        listofTuples = [ ("day",str(day_list[a])),("number",number_list[a]),("month", str(month_list[a])), ("year", year_list[a]), ("unix", unix_list[a]),("longeur",list_of_long[a]),("speed",dataList[a])]
+        listofTuples = [ ("day",str(day_list[a])),("number",number_list[a]),("month", str(month_list[a])), ("year", year_list[a]), ("unix", unix_list[a]),("longeur",int(list_of_long[a][0])),("speed",dataList[a])]
         dictionary.append(dict(listofTuples))
     
  
-    ## remplacement des vitesse dans le dictionnaire par les vitesses correctes
+    ## remplacement des vitesses dans le dictionnaire par les vitesses correctes (heure par heure)
          
     a=0
     b=0
